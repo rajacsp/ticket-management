@@ -1,6 +1,6 @@
 package com.packtpub.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+//import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class User {
@@ -9,7 +9,8 @@ public class User {
 	
 	private String username;	
 	
-	public User(@JsonProperty("userid") Integer userid, @JsonProperty("username") String username){
+	//public User(@JsonProperty("userid") Integer userid, @JsonProperty("username") String username){
+	public User(Integer userid, String username){
 		this.userid = userid;
 		this.username = username;
 	}
