@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +34,47 @@ public class TicketManagementApplication {
 		
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/user")
+	public Map<String, Object> getAllUsers(){
+		Map<String, Object> map = new LinkedHashMap<>();
+		map.put("result", "Get All Users Implementation");
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/user/{id}")
+	public Map<String, Object> getUser(@PathVariable("id") Integer id){
+		Map<String, Object> map = new LinkedHashMap<>();
+		map.put("result", "Create User Implementation");
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	public Map<String, Object> createUser(){
+		Map<String, Object> map = new LinkedHashMap<>();
+		map.put("result", "Create User Implementation");
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user", method = RequestMethod.PUT)
+	public Map<String, Object> updateUser(){
+		Map<String, Object> map = new LinkedHashMap<>();
+		map.put("result", "Update User Implementation");
+		return map;
+	}
 
+	@ResponseBody
+	@RequestMapping(value = "/user", method = RequestMethod.DELETE)
+	public Map<String, Object> deleteUser(){
+		Map<String, Object> map = new LinkedHashMap<>();
+		map.put("result", "Update User Implementation");
+		return map;
+	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TicketManagementApplication.class, args);
 	}
