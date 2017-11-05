@@ -1,4 +1,4 @@
-package com.packtpub.restapp.ticketmanagement;
+package com.packtpub.restapp;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
