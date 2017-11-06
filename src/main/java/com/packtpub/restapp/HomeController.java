@@ -39,8 +39,8 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/test/aop/without/annotation")	
-	public Map<String, Object> testAOPWithoutAnnotation(){
+	@RequestMapping("/test/aop/with/execution")	
+	public Map<String, Object> testAOPExecution(){
 		Map<String, Object> map = new LinkedHashMap<>();
 		map.put("result", "Aloha");
 		
@@ -51,7 +51,7 @@ public class HomeController {
 	@RequestMapping("/security/generate/token")
 	public Map<String, Object> generateToken(@RequestParam(value="subject") String subject){
 		
-		String token = securityService.createToken(subject, (2 * 1000 * 60));
+		String token = securityService.createToken(subject, (15 * 1000 * 60));
 		
 		Map<String, Object> map = new LinkedHashMap<>();
 		map.put("result", token);
