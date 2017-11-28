@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,17 @@ import com.packtpub.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 	
+	private static final Logger logger = Logger.getLogger(UserController.class);
+	
 	@Autowired
 	UserService userSevice;	
 	
 	@ResponseBody
 	@RequestMapping("")
 	public List<User> getAllUsers(){
+		
+		logger.trace("Get All Users");		
+		
 		return userSevice.getAllUsers();
 	}
 	

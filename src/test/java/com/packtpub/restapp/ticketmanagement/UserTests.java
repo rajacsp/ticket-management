@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,7 @@ import com.packtpub.service.UserService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TicketManagementApplicationTests {
-	
-	private static final Logger logger = Logger.getLogger(TicketManagementApplicationTests.class);
+public class UserTests {
 	
 	@Autowired
 	UserService userSevice;

@@ -3,6 +3,8 @@ package com.packtpub.restapp;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,8 @@ import com.packtpub.service.SecurityService;
 @RequestMapping("/")
 public class HomeController {
 	
+	private final Logger _log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	SecurityService securityService;
 	
@@ -23,6 +27,13 @@ public class HomeController {
 	@RequestMapping("")	
 	public Map<String, Object> test(){
 		Map<String, Object> map = new LinkedHashMap<>();
+		
+		_log.trace("Trace message");
+		_log.debug("Debug message");
+	    _log.info("Info message");
+	    _log.warn("Warn message");
+	    _log.error("Error message");	    
+		
 		map.put("result", "Aloha");
 		
 		return map;

@@ -1,9 +1,19 @@
 package com.packtpub.model;
 
+import java.io.Serializable;
+
 //import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-public class User {
+public class User implements Serializable {	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public User(){		
+	}
 
 	private Integer userid;
 	
@@ -29,5 +39,10 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}	
+	}
+	
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username + "]";
+	}
 }
