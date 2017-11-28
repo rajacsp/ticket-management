@@ -11,8 +11,6 @@ public class ErrorHandler {
 	@ExceptionHandler(Exception.class)
 	public @ResponseBody <T> T handleException(Exception ex) {
 		
-		//System.out.println("trap1.1");
-		
 		Map<String, Object> errorMap = new LinkedHashMap<>();
 		if(ex instanceof org.springframework.web.bind.MissingServletRequestParameterException){
 			

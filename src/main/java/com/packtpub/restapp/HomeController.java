@@ -71,7 +71,7 @@ public class HomeController extends ErrorHandler {
 	
 	@ResponseBody
 	@RequestMapping("/test/error/{id}")
-	public Map<String, Object> getUser(@PathVariable("id") Integer id){
+	public Map<String, Object> testRuntimeError(@PathVariable("id") Integer id){
 		
 		if(id == 1){
 			throw new RuntimeException("some exception");
