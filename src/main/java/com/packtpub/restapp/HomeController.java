@@ -6,17 +6,19 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.packtpub.aop.TokenRequired;
+import com.packtpub.model.User;
 import com.packtpub.service.SecurityService;
 
 @RestController
 @RequestMapping("/")
-public class HomeController {
+public class HomeController extends ErrorHandler {
 	
 	private final Logger _log = LoggerFactory.getLogger(this.getClass());
 	
@@ -59,6 +61,29 @@ public class HomeController {
 	}
 	
 	@ResponseBody
+	@RequestMapping("/test/error")	
+	public Map<String, Object> testAOPExecution(@RequestParam(value="item") String item){
+		Map<String, Object> map = new LinkedHashMap<>();
+		map.put("item", item);
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/test/error/{id}")
+	public Map<String, Object> getUser(@PathVariable("id") Integer id){
+		
+		if(id == 1){
+			throw new RuntimeException("some exception");
+		}
+		
+		Map<String, Object> map = new LinkedHashMap<>();
+		map.put("result", "one");
+		
+		return map;
+	}
+	
+	@ResponseBody
 	@RequestMapping("/security/generate/token")
 	public Map<String, Object> generateToken(@RequestParam(value="subject") String subject){
 		
@@ -68,7 +93,7 @@ public class HomeController {
 		map.put("result", token);
 		
 		return map;
-	}
+	}	
 	
 	@ResponseBody
 	@RequestMapping("/security/get/subject")
