@@ -30,11 +30,11 @@ public class HomeController extends ErrorHandler {
 	public Map<String, Object> test(){
 		Map<String, Object> map = new LinkedHashMap<>();
 		
-		_log.trace("Trace message");
-		_log.debug("Debug message");
-	    _log.info("Info message");
-	    _log.warn("Warn message");
-	    _log.error("Error message");	    
+		//_log.trace("Trace message");
+		//_log.debug("Debug message");
+	    //_log.info("Info message");
+	    //_log.warn("Warn message");
+	    //_log.error("Error message");	    
 		
 		map.put("result", "Aloha");
 		
