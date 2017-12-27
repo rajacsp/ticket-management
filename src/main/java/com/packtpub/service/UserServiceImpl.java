@@ -1,9 +1,11 @@
 package com.packtpub.service;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
 import com.packtpub.model.User;
 
 @Service
@@ -42,7 +44,7 @@ public class UserServiceImpl implements UserService {
 				
 				users.remove(user);
 				
-				user = new User(userid, username);
+				user = new User(userid, username, new Date());
 				
 				users.add(user);
 				
@@ -69,8 +71,8 @@ public class UserServiceImpl implements UserService {
 	public UserServiceImpl() {
 		users = new LinkedList<>();
 		
-		users.add(new User(100, "David"));
-		users.add(new User(101, "Peter"));
-		users.add(new User(102, "John"));
+		users.add(new User(100, "David", new Date()));
+		users.add(new User(101, "Peter", new Date()));
+		users.add(new User(102, "John", new Date()));
 	}
 }

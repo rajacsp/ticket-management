@@ -1,5 +1,8 @@
 package com.packtpub.restapp;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
 import com.packtpub.aop.TokenRequired;
 import com.packtpub.model.User;
@@ -30,16 +34,32 @@ public class UserController {
 	@RequestMapping("")
 	public List<User> getAllUsers(){
 		
-		logger.trace("Get All Users");		
+		logger.trace("Get All Users");	
+		
 		
 		return userSevice.getAllUsers();
 	}
 	
 	@ResponseBody
 	@RequestMapping("/{id}")
-	public User getUser(@PathVariable("id") Integer id){		
-		return userSevice.getUser(100);
-	}
+	public User getUser(@PathVariable("id") Integer id, WebRequest webRequest){
+		
+		User user = userSevice.getUser(id);
+		long updated = user.getUpdatedDate().getTime();
+		
+		boolean isNotModified = webRequest.checkNotModified(updated);
+		
+		logger.info("{getUser} isNotModified : "+isNotModified);
+		
+		if(isNotModified){
+			logger.info("{getUser} resource not modified since last call, so exiting");
+			return null;
+		}
+		
+		logger.info("{getUser} resource modified since last call, so get the updated content");
+		
+		return userSevice.getUser(id);
+	}	
 	
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.POST)
@@ -81,5 +101,15 @@ public class UserController {
 		
 		map.put("result", "deleted");
 		return map;
+	}
+	
+	public long getLastModified(Integer userid) {		
+		return 0;
+	}
+	
+	public static long getResourceLastModified () {
+		ZonedDateTime zdt = ZonedDateTime.of(LocalDateTime.of(2017, 1, 9, 10, 30, 20),
+                                           ZoneId.of("GMT"));
+		return zdt.toInstant().toEpochMilli();
 	}
 }

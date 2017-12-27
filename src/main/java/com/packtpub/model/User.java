@@ -1,28 +1,41 @@
 package com.packtpub.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-//import com.fasterxml.jackson.annotation.JsonProperty;
-
-
-public class User implements Serializable {	
+public class User implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	public User(){		
+
+	public User() {
 	}
 
 	private Integer userid;
-	
-	private String username;	
-	
-	//public User(@JsonProperty("userid") Integer userid, @JsonProperty("username") String username){
-	public User(Integer userid, String username){
+
+	private String username;
+
+	private Date updatedDate;
+
+	public User(Integer userid, String username) {
 		this.userid = userid;
 		this.username = username;
+	}
+
+	public User(Integer userid, String username, Date updatedDate) {
+		this.userid = userid;
+		this.username = username;
+		this.updatedDate = updatedDate;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
 	}
 
 	public Integer getUserid() {
@@ -40,9 +53,10 @@ public class User implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", username=" + username + "]";
+		return "User [userid=" + userid + ", username=" + username + ", updatedDate=" + updatedDate + "]";
 	}
+
 }
